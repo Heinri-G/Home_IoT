@@ -1,0 +1,84 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Vertical and horizontal padding */
+  background-color: #2c3e50; /* Dark blue-grey background */
+  color: #ecf0f1; /* Light text color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Fixed height */
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo-img {
+  height: 30px; /* Adjust as needed */
+  width: auto;
+  margin-right: 10px;
+  /* filter: invert(1) brightness(2); /* Makes a dark SVG white if needed */
+}
+
+.navbar__logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff; /* Ensure logo text is clearly visible */
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__button {
+  background-color: transparent;
+  color: #ecf0f1;
+  border: 1px solid #ecf0f1;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  margin-left: 1rem; /* Spacing for multiple buttons */
+}
+
+.navbar__button:hover {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.navbar__button--logout {
+  /* Specific styles for logout button if needed */
+  border-color: #e74c3c; /* A slightly different color for emphasis */
+}
+
+.navbar__button--logout:hover {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border-color: #e74c3c;
+}
+
+
+/* Responsive adjustments for Navbar */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    flex-direction: column; /* Stack logo and actions on small screens */
+    height: auto;
+  }
+
+  .navbar__logo-text {
+    font-size: 1.2rem;
+  }
+
+  .navbar__actions {
+    margin-top: 0.5rem; /* Add some space when stacked */
+  }
+
+  .navbar__button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}

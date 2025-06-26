@@ -1,0 +1,44 @@
+/* DashboardPage.css */
+.dashboard-page {
+  padding: 20px;
+}
+
+.dashboard-page__title {
+  font-size: 2rem;
+  color: #2c3e50; /* Dark blue-grey text */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+}
+
+.dashboard-page__loader,
+.dashboard-page__error,
+.dashboard-page__empty {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 40px 20px;
+  color: #555;
+}
+
+.dashboard-page__error {
+  color: #e74c3c; /* Red for errors */
+  background-color: #fdeded;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments for the grid if needed, though auto-fill is good */
+@media (max-width: 600px) {
+  .dashboard-page__grid {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+    gap: 15px;
+  }
+  .dashboard-page__title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # MQTT Broker
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883" # MQTT default port
+      - "9001:9001" # MQTT WebSockets
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    # networks:
+    #   - app-network
+
+  # Backend API (FastAPI)
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - timescaledb
+      - mosquitto
+    # networks:
+    #   - app-network
+    environment:
+      - DATABASE_URL=postgresql://user:password@timescaledb:5432/plantdb
+      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_PORT=1883
+      # Keycloak settings will be added later
+
+  # Data Storage (TimescaleDB)
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./backend/db_init:/docker-entrypoint-initdb.d # For initial SQL scripts
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=plantdb
+    # networks:
+    #   - app-network
+
+  # Frontend (React) - served by a simple static server for now
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev # We'll create this later for dev
+    ports:
+      - "3000:3000" # Vite dev server default
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Mount node_modules from the container
+    depends_on:
+      - backend
+    # networks:
+    #   - app-network
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+      - VITE_WS_BASE_URL=ws://localhost:8000/ws
+
+  # Auth Server (Keycloak)
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      # Further Keycloak configuration will be managed via its admin console or realm exports
+    command: start-dev
+    # networks:
+    #   - app-network
+
+  # Notification Service (Gotify)
+  gotify:
+    image: gotify/server:latest
+    ports:
+      - "8081:80" # Gotify web UI / API
+    volumes:
+      - gotify_data:/app/data
+    # networks:
+    #   - app-network
+
+volumes:
+  timescaledb_data:
+  gotify_data:
+
+# networks:
+#   app-network:
+#     driver: bridge

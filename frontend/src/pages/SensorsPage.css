@@ -1,0 +1,215 @@
+/* SensorsPage.css */
+.sensors-page {
+  padding: 20px;
+}
+
+.sensors-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.sensors-page__title {
+  font-size: 2rem;
+  color: #2c3e50; /* Dark blue-grey text */
+  margin: 0;
+}
+
+.sensors-page__button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sensors-page__button--add {
+  background-color: #27ae60; /* Green */
+  color: white;
+}
+.sensors-page__button--add:hover {
+  background-color: #229954;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sensors-page__status {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 30px 15px;
+  color: #555;
+  background-color: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+}
+
+.sensors-page__status--error {
+  color: #e74c3c; /* Red for errors */
+  background-color: #fdeded;
+  border: 1px solid #e74c3c;
+}
+
+/* Table Styling */
+.sensors-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden; /* For border-radius on table */
+}
+
+.sensors-page__table th,
+.sensors-page__table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1; /* Light grey border for rows */
+}
+
+.sensors-page__table th {
+  background-color: #f5f7fa; /* Very light grey for header */
+  color: #34495e; /* Dark blue-grey text for header */
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.sensors-page__table tbody tr:last-child td {
+  border-bottom: none; /* No border for the last row */
+}
+
+.sensors-page__table tbody tr:hover {
+  background-color: #f9f9f9; /* Slight hover effect for rows */
+}
+
+.sensors-page__actions-cell {
+  text-align: right; /* Align action buttons to the right */
+  white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+.sensors-page__button--edit,
+.sensors-page__button--delete {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  margin-left: 8px;
+}
+
+.sensors-page__button--edit {
+  background-color: #3498db; /* Blue */
+  color: white;
+}
+.sensors-page__button--edit:hover {
+  background-color: #2980b9;
+}
+
+.sensors-page__button--delete {
+  background-color: #e74c3c; /* Red */
+  color: white;
+}
+.sensors-page__button--delete:hover {
+  background-color: #c0392b;
+}
+
+/* Placeholder for SensorForm modal */
+.sensors-page__modal-placeholder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 1010;
+  border-radius: 8px;
+  text-align: center;
+}
+.sensors-page__modal-placeholder button {
+    margin: 10px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sensors-page__header {
+    flex-direction: column;
+    align-items: stretch; /* Make button full width on small screens */
+    gap: 15px;
+  }
+  .sensors-page__title {
+    text-align: center;
+    font-size: 1.7rem;
+  }
+  .sensors-page__button--add {
+    width: 100%;
+  }
+
+  .sensors-page__table {
+    font-size: 0.9rem; /* Smaller font for table on smaller screens */
+  }
+  .sensors-page__table th,
+  .sensors-page__table td {
+    padding: 10px 8px;
+  }
+  .sensors-page__actions-cell {
+    /* Consider stacking buttons or making them icon-only if space is very tight */
+  }
+}
+
+@media (max-width: 600px) {
+  /* For very small screens, the table might need to become a list of cards */
+  /* This is a common pattern but more complex to implement purely with CSS for tables */
+  /* For now, allow horizontal scrolling or ensure content is minimal */
+  .sensors-page__table thead {
+    display: none; /* Hide table header */
+  }
+  .sensors-page__table, .sensors-page__table tbody, .sensors-page__table tr, .sensors-page__table td {
+    display: block; /* Make table elements block-level */
+    width: 100%;
+  }
+  .sensors-page__table tr {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .sensors-page__table td {
+    text-align: right; /* Align text to the right */
+    padding-left: 50%; /* Create space for the label */
+    position: relative;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .sensors-page__table td:last-child {
+    border-bottom: none;
+  }
+  .sensors-page__table td::before {
+    content: attr(data-label); /* Use data-label for pseudo-header */
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px); /* Width of the label area */
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .sensors-page__actions-cell {
+    text-align: center; /* Center buttons in the "actions" cell */
+    padding-left: 0; /* Reset padding for actions cell */
+  }
+   .sensors-page__actions-cell::before {
+    display:none; /* No label for actions cell */
+   }
+  .sensors-page__button--edit,
+  .sensors-page__button--delete {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 5px auto;
+  }
+
+  /* Update JS to add data-label attributes to td elements for this to work */
+  /* Example: <td data-label="ID">{sensor.sensor_id}</td> */
+  /* This would require modifying the JSX in SensorsPage.tsx */
+}
