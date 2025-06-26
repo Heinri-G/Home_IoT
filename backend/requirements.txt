@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+paho-mqtt
+psycopg2-binary # For PostgreSQL/TimescaleDB connection
+python-dotenv # For managing environment variables
+# For Keycloak integration (later)
+# python-jose[cryptography]
+# passlib[bcrypt]

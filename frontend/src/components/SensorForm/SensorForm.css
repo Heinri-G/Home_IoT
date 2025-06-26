@@ -1,0 +1,201 @@
+/* SensorForm.css */
+.sensor-form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050; /* Higher than HistoryModal if they can overlap, or same level */
+}
+
+.sensor-form-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Standard overlay */
+  cursor: pointer;
+}
+
+.sensor-form-modal__content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px; /* Optimal width for a form */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Important for border-radius and internal scrolling */
+}
+
+.sensor-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure form takes up modal content height */
+}
+
+.sensor-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef; /* Light border */
+  background-color: #f8f9fa; /* Slight off-white for header */
+}
+
+.sensor-form__title {
+  font-size: 1.25rem;
+  color: #343a40; /* Darker text */
+  margin: 0;
+  font-weight: 600;
+}
+
+.sensor-form__close-button {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #6c757d; /* Greyish */
+  cursor: pointer;
+  padding: 0 5px;
+  line-height: 1;
+}
+.sensor-form__close-button:hover {
+  color: #343a40;
+}
+
+.sensor-form__body {
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling for form fields if needed */
+  flex-grow: 1;
+}
+
+.sensor-form__field {
+  margin-bottom: 18px;
+}
+
+.sensor-form__label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.sensor-form__input,
+.sensor-form__input[type="text"],
+.sensor-form__input[type="number"],
+.sensor-form__input[type="select"] { /* Targeting select directly */
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none; /* Remove default styling for select on Safari */
+  -moz-appearance: none;
+  appearance: none;
+}
+/* Custom arrow for select */
+select.sensor-form__input {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: .65em auto;
+  padding-right: 2.5rem; /* Make space for the arrow */
+}
+
+
+.sensor-form__input:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.sensor-form__input--error {
+  border-color: #dc3545; /* Red for error */
+}
+.sensor-form__input--error:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.sensor-form__input:disabled {
+  background-color: #e9ecef;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.sensor-form__error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.sensor-form__footer {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  padding: 15px 20px;
+  border-top: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+.sensor-form__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sensor-form__button--cancel {
+  background-color: #6c757d; /* Grey */
+  color: white;
+  margin-right: 10px;
+}
+.sensor-form__button--cancel:hover {
+  background-color: #5a6268;
+}
+
+.sensor-form__button--submit {
+  background-color: #007bff; /* Blue */
+  color: white;
+}
+.sensor-form__button--submit:hover {
+  background-color: #0069d9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .sensor-form-modal__content {
+    width: 95%;
+    max-height: 95vh;
+  }
+  .sensor-form__header, .sensor-form__body, .sensor-form__footer {
+    padding: 15px;
+  }
+  .sensor-form__title {
+    font-size: 1.1rem;
+  }
+  .sensor-form__button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  .sensor-form__footer {
+    flex-direction: column-reverse; /* Stack buttons on small screens */
+    gap: 10px; /* Add space between stacked buttons */
+  }
+  .sensor-form__button--cancel {
+    margin-right: 0;
+  }
+}

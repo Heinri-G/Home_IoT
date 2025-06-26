@@ -1,0 +1,114 @@
+/* Sidebar.css */
+.sidebar {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #34495e; /* Slightly lighter dark blue-grey */
+  color: #ecf0f1;
+  padding: 20px 0; /* Padding top/bottom, no side padding for list */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Subtle shadow to the right */
+}
+
+.sidebar__nav {
+  width: 100%;
+}
+
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar__item {
+  /* Each item itself doesn't need much styling if link takes full width */
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px; /* Padding inside each link */
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border-left: 3px solid transparent; /* For active state indicator */
+}
+
+.sidebar__link:hover {
+  background-color: #4a627a; /* Hover state */
+  color: #ffffff;
+}
+
+.sidebar__link--active {
+  background-color: #2c3e50; /* Active state background */
+  color: #ffffff;
+  font-weight: 600;
+  border-left: 3px solid #3498db; /* Active state indicator color (e.g., blue) */
+}
+
+.sidebar__icon {
+  margin-right: 15px; /* Space between icon and text */
+  font-size: 1.2rem; /* Icon size */
+  width: 24px; /* Fixed width for icon alignment */
+  text-align: center;
+}
+
+.sidebar__text {
+  flex-grow: 1; /* Text takes remaining space */
+}
+
+/* Responsive adjustments for Sidebar */
+@media (max-width: 768px) { /* Example breakpoint for tablets/smaller screens */
+  .sidebar {
+    width: 200px; /* Slightly narrower sidebar */
+  }
+  .sidebar__link {
+    padding: 10px 15px;
+  }
+  .sidebar__icon {
+    margin-right: 10px;
+    font-size: 1.1rem;
+  }
+  .sidebar__text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) { /* Mobile devices */
+  .sidebar {
+    width: 100%; /* Full width if it becomes a top/bottom bar or hidden menu */
+    height: auto; /* Adjust height if it's horizontal */
+    /* Example: transform to a hidden menu toggled by a button */
+    /* position: fixed; left: -100%; transition: left 0.3s ease; */
+    /* For this project, let's assume it might get very narrow or hidden */
+    /* For now, let's just make it narrower if still visible */
+    width: 60px; /* Icon-only sidebar on very small screens */
+    padding: 10px 0;
+  }
+
+  .sidebar__text {
+    display: none; /* Hide text, show only icons */
+  }
+
+  .sidebar__link {
+    justify-content: center; /* Center icon */
+    padding: 15px 0;
+  }
+
+  .sidebar__icon {
+    margin-right: 0;
+    font-size: 1.5rem; /* Make icons a bit larger if they are the only thing visible */
+  }
+
+  .sidebar__link--active {
+     border-left: none; /* Remove left border */
+     border-top: 3px solid #3498db; /* Or use a different indicator */
+  }
+
+  /* This example makes it an icon-only bar.
+     A common pattern is to hide it and use a hamburger menu.
+     For this exercise, an icon bar is a simpler CSS-only approach.
+     If the main content area needs to adjust, App.css would handle that.
+  */
+}

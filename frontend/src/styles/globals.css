@@ -1,0 +1,129 @@
+/* globals.css */
+
+/* Reset some default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #ffffff; /* Default page background, app container can override */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: #007bff; /* Example link color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Basic Form Styling (can be expanded) */
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Container class for centering content */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Responsive Breakpoints (as specified) */
+
+/* Mobile (default styles can be mobile-first, or override here) */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px; /* Adjust base font size for mobile */
+  }
+  .page-content {
+    padding: 10px; /* Less padding on mobile */
+  }
+  /* Add mobile-specific styles here */
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container {
+    width: 85%;
+  }
+  /* Add tablet-specific styles here */
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  /* Add desktop-specific styles here */
+}
+
+/* Utility classes */
+.sr-only { /* Screen reader only */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* BEM related CSS will be in component-specific files */
+
+/* Example Status Colors (can be used with BEM modifiers) */
+.status--ok {
+  color: #28a745; /* Green */
+}
+.status--warning {
+  color: #ffc107; /* Yellow */
+}
+.status--alert {
+  color: #dc3545; /* Red */
+}
+
+.background--ok {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.background--warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+.background--alert {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

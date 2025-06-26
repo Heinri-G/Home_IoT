@@ -1,0 +1,149 @@
+/* HistoryModal.css */
+.history-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.history-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent backdrop */
+  cursor: pointer;
+}
+
+.history-modal__content {
+  position: relative; /* To be above the overlay */
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 800px; /* Max width of the modal */
+  max-height: 90vh; /* Max height of the modal */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent content from spilling before internal scroll */
+}
+
+.history-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.history-modal__title {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.history-modal__close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  padding: 0 10px;
+  line-height: 1; /* Ensure consistent alignment */
+}
+.history-modal__close-button:hover {
+  color: #333;
+}
+
+.history-modal__body {
+  flex-grow: 1; /* Body takes available space */
+  overflow-y: auto; /* Allows content (like chart) to scroll if needed */
+  padding-right: 10px; /* Space for scrollbar if it appears */
+}
+
+.history-modal__chart-container {
+  width: 100%;
+  height: 400px; /* Default height, can be adjusted */
+  min-height: 300px; /* Minimum height for the chart area */
+}
+
+.history-modal__loader,
+.history-modal__error,
+.history-modal__empty {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 30px 15px;
+  color: #666;
+}
+
+.history-modal__error {
+  color: #e74c3c; /* Red for errors */
+  background-color: #fdd;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+}
+
+/* Date range picker styling (placeholder) */
+.history-modal__date-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.history-modal__date-filters label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.history-modal__date-filters input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+
+/* Responsive adjustments for HistoryModal */
+@media (max-width: 768px) {
+  .history-modal__content {
+    width: 95%;
+    padding: 20px;
+  }
+  .history-modal__title {
+    font-size: 1.3rem;
+  }
+  .history-modal__chart-container {
+    height: 300px; /* Smaller chart on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .history-modal__content {
+    padding: 15px;
+    max-height: 95vh;
+  }
+  .history-modal__title {
+    font-size: 1.1rem;
+  }
+  .history-modal__close-button {
+    font-size: 1.8rem;
+  }
+  .history-modal__date-filters {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .history-modal__chart-container {
+    height: 250px;
+  }
+}
